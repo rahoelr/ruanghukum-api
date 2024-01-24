@@ -1,6 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { Response } from "@/src/helper/apiResponse";
+
+const YOUR_GEMINI_API_KEY = "AIzaSyAgBfSe48299uisaHx2GcTU10lA_4liWec";
+
 interface ChatApiRequest extends NextApiRequest {
   body: {
     message: string;
@@ -15,7 +18,7 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     const { message } = req.body;
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
+    const genAI = new GoogleGenerativeAI(YOUR_GEMINI_API_KEY);
 
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
